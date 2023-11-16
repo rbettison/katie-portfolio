@@ -8,11 +8,27 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+        'mainFont':['Helvetica Neue'] 
       },
+      spacing: {
+        '128': '32rem',
+      },
+      backgroundImage: {
+        'hero-image': "url('https://media.licdn.com/dms/image/C4D03AQGLf4MIExmCcA/profile-displayphoto-shrink_800_800/0/1643027474129?e=1705536000&v=beta&t=Naw1SYEdX77xpw3H5TBc3tr9RafMzAJCIH536LCY_Is')",
+        'twitter-logo': "url('/twitter-logo.png')",
+        'telegram-logo': "url('/telegram.png')",
+        'linkedin-logo': "url('/linkedin.png')",
+
+      },
+      colors: {
+        mainBg: {
+          '100': 'rgb(195,195,251)'
+        },
+        mainText: {
+          '100': 'rgb(53,109,137)'
+        }
+      }
     },
   },
   plugins: [],

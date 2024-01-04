@@ -1,7 +1,7 @@
 export default function Contact() {
     return(
         <>
-        <div className="gap-8 text-xl font-bold mt-16 mb-24 w-1/2">
+        <div className="gap-8 text-xl font-bold mt-16 mb-24 w-1/2 font-highlightFont">
             <h1 className="w-1/2 text-3xl font-bold border-b pb-4 border-double mb-8">Get in touch</h1>
 
         <div className="p-8">

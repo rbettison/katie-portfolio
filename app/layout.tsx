@@ -41,6 +41,7 @@ export default function RootLayout({
                         flex flex-col
                         items-center
                         min-h-screen
+                        w-full
                         ${vt323.variable}`}>   
       <MouseTracker />        
       <Header />

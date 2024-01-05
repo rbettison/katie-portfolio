@@ -3,8 +3,8 @@ import StaggeredAnimationContainer from "../portfolio/StaggeredAnimationContaine
 
 export default function Services() {
     return (
-        <StaggeredAnimationContainer delay={0} childrenDelay={0.2} containerClassName="flex flex-col gap-8 text-xl font-bold mt-16 mb-16 w-1/2 font-highlightFont">
-            <h1 className="w-1/2 text-3xl font-bold border-b pb-4 border-double">Services</h1>
+        <StaggeredAnimationContainer delay={0} childrenDelay={0.2} containerClassName="text-center flex flex-col gap-8 text-xl font-bold mt-4 sm:mt-16 sm:mb-16 sm:w-1/2 w-3/4">
+            <h1 className="w-1/2 text-xl sm:text-3xl font-bold border-b pb-4 border-double text-left font-highlightFont">Services</h1>
             <RocketPoint message="Go To Market Strategy"/>   
             <RocketPoint message="Marketing Advisory" subMessage="Co-marketing, CRM, Digital, IRL/Experiential, 360 campaigns"/>                
             <RocketPoint message="Partnership Strategy & Execution"/>                

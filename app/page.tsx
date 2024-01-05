@@ -1,13 +1,14 @@
 'use client'
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link'
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AnimatedLogo from './portfolio/AnimatedLogo';
 import StaggeredAnimationContainer from './portfolio/StaggeredAnimationContainer';
 
 export default function Home() {
 
   const ref = useRef(null);
+  const [maxBioWidth, setMaxBioWidth] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -19,30 +20,39 @@ export default function Home() {
     hidden: {opacity: 0}
   }
 
+  useEffect(() => {
+    if (typeof window != 'undefined') {
+      setMaxBioWidth(window.innerWidth / 5 * 4);
+    }
+  })
+  
+
   const borderWidth = useTransform(
     scrollYProgress,
     // Map x from these values:
     [0, 1],
     // Into these values:
-    [0, 1100]
+    [20, maxBioWidth]
   )
   
   return (
     <>
-      <section className='w-full flex flex-row justify-around mt-20 mb-36 relative items-center'>
-        <StaggeredAnimationContainer delay={0} childrenDelay={1} containerClassName="flex flex-col gap-2 items-center justify-items-center">
-        <motion.div variants={variantType} className="text-4xl font-highlightFont"><span className='wrap'>Hi,</span> I&apos;m Katie</motion.div>
-        <motion.div variants={variantType} className="text-xl text-right ">Web3 business strategist and marketeer.</motion.div>
+      <section className='flex flex-col w-full sm:grid grid-rows-1 grid-cols-3 sm:mt-20 sm:mb-36 relative place-items-center px-4'>
+        <motion.div transition={{delay:0}} initial={{opacity: 0}} animate={{opacity:1}} className="flex flex-col gap-2 items-center justify-items-center">
         {/* <motion.div variants={variantType} className="text-xl text-right "></motion.div> */}
-        <motion.div variants={variantType} className='w-96 h-96 rounded-3xl bg-hero-image bg-center bg-cover drop-shadow-md my-8'>   
-        </motion.div>
-        <motion.div variants={variantType} className='flex flex-row justify-center left-0 right-0 gap-3'>
+        <div className='sm:w-96 sm:h-96 h-64 w-64 rounded-3xl bg-hero-image bg-center bg-cover drop-shadow-md my-8'>   
+        </div>
+        <div className='flex flex-row justify-center left-0 right-0 gap-3'>
             <div className='w-10 h-10 bg-twitter-logo bg-cover'></div>
             <div className='w-0.5 h-10 bg-white'></div>
             <div className='w-10 h-10 bg-telegram-logo bg-cover'></div>
             <div className='w-0.5 h-10 bg-white'></div>
             <div className='w-10 h-10 bg-linkedin-logo bg-cover'></div>
-          </motion.div>
+          </div>
+        </motion.div>
+        <StaggeredAnimationContainer delay={1} childrenDelay={1} containerClassName="flex flex-col gap-2 items-center justify-items-center text-center">
+        <motion.div variants={variantType} className="text-4xl font-highlightFont"><span className='wrap'>Hi,</span> I&apos;m Katie</motion.div>
+        <motion.div variants={variantType} className="text-xl">Web3 business strategist and marketeer.</motion.div>
         </StaggeredAnimationContainer>
 
                 
@@ -58,7 +68,7 @@ export default function Home() {
                 </StaggeredAnimationContainer>
 
 
-        <Link href="/#bio" className="mt-8 absolute bottom-10 left-0 right-0 flex flex-col gap-4 items-center">
+        <Link href="/#bio" className="mt-8 absolute bottom-10 left-0 right-0 flex-col gap-4 items-center hidden sm:flex">
           <motion.svg 
             animate={{scale:1, opacity:1}}
             transition={{delay:6}}
@@ -76,9 +86,9 @@ export default function Home() {
       {/* <motion.div style={{width: borderWidth}} className='h-8 bg-black'>
         
         </motion.div> */}
-      <section>  
+      <section className='mt-8'>  
       <div ref={ref} className='h-2 w-2'></div>  
-      <motion.div style={{width: borderWidth}}  className='flex flex-col gap-8 border-x border-white pl-8 pr-8 mt-16 mb-44' id="bio">
+      <motion.div style={{width: borderWidth}}  className='flex flex-col gap-8 border-x border-white pl-8 pr-8 sm:mt-16 mb-8 sm:mb-44 max-w-screen' id="bio">
         <p>I’m a Web3 business strategist and marketeer, based in London whilst dipping in and out of digital nomad-ism.</p>
         <p>My journey into crypto started in 2020 when I became all consumed by the world of Web3 after buying my first BTC and putting it onto a Ledger. From there I invested in NFT projects and participated in DAOs, continually fascinated by blockchain technology and the incredible community fostered as a result of its development.</p>
         <p>From there I started at MoonPay, first in general Brand Marketing, then GTM strategy & Partnerships, this is where I had the pleasure of working alongside some of the largest players in the industry (Uniswap, MetaMask, Ledger, OpenSea).</p>

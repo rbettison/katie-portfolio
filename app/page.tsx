@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link'
 import { useRef } from 'react';
 import AnimatedLogo from './portfolio/AnimatedLogo';
+import StaggeredAnimationContainer from './portfolio/StaggeredAnimationContainer';
 
 export default function Home() {
 
@@ -12,6 +13,11 @@ export default function Home() {
     target: ref,
     offset: ["end end", "start start"]
   });
+
+  const variantType = {
+    show: {opacity: 1},
+    hidden: {opacity: 0}
+  }
 
   const borderWidth = useTransform(
     scrollYProgress,
@@ -23,22 +29,24 @@ export default function Home() {
   
   return (
     <>
-      <section className='w-full flex flex-row justify-around mt-24 mb-36 relative items-center'>
-        <div className="flex flex-col gap-8 items-center justify-items-center">
-        <div className="text-4xl font-highlightFont"><span className='wrap'>Hi,</span> I&apos;m Katie ... </div>
-        <div className='w-96 h-96 rounded-full bg-hero-image bg-center bg-cover drop-shadow-md mb-8'>   
-        </div>
-        <div className='flex flex-row justify-center left-0 right-0 gap-3'>
+      <section className='w-full flex flex-row justify-around mt-20 mb-36 relative items-center'>
+        <StaggeredAnimationContainer delay={0} childrenDelay={1} containerClassName="flex flex-col gap-2 items-center justify-items-center">
+        <motion.div variants={variantType} className="text-4xl font-highlightFont"><span className='wrap'>Hi,</span> I&apos;m Katie</motion.div>
+        <motion.div variants={variantType} className="text-xl text-right ">Web3 business strategist and marketeer.</motion.div>
+        {/* <motion.div variants={variantType} className="text-xl text-right "></motion.div> */}
+        <motion.div variants={variantType} className='w-96 h-96 rounded-3xl bg-hero-image bg-center bg-cover drop-shadow-md my-8'>   
+        </motion.div>
+        <motion.div variants={variantType} className='flex flex-row justify-center left-0 right-0 gap-3'>
             <div className='w-10 h-10 bg-twitter-logo bg-cover'></div>
             <div className='w-0.5 h-10 bg-white'></div>
             <div className='w-10 h-10 bg-telegram-logo bg-cover'></div>
             <div className='w-0.5 h-10 bg-white'></div>
             <div className='w-10 h-10 bg-linkedin-logo bg-cover'></div>
-          </div>
-        <div className="text-2xl text-right font-highlightFont">Web3 business strategist and marketeer.</div>
-        </div>
-        <div className="grid grid-cols-3 grid-rows-3 place-items-center w-[300px] h-[300px]">
+          </motion.div>
+        </StaggeredAnimationContainer>
+
                 
+                <StaggeredAnimationContainer delay={4} childrenDelay={0.2} containerClassName="grid grid-cols-3 grid-rows-3 place-items-center w-[300px] h-[300px]">
                 <AnimatedLogo />
                 <AnimatedLogo />
                 <AnimatedLogo />
@@ -47,15 +55,19 @@ export default function Home() {
                 <AnimatedLogo />
                 <AnimatedLogo />
                 <AnimatedLogo />
+                </StaggeredAnimationContainer>
 
 
-            </div>
         <Link href="/#bio" className="mt-8 absolute bottom-10 left-0 right-0 flex flex-col gap-4 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" 
+          <motion.svg 
+            animate={{scale:1, opacity:1}}
+            transition={{delay:6}}
+            initial={{scale:5, opacity:0}}
+            xmlns="http://www.w3.org/2000/svg" 
                             fill="none" viewBox="0 0 24 24" strokeWidth={1.5} 
-                            stroke="currentColor" className="w-6 h-6 ">
+                            stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
-          </svg>
+          </motion.svg>
         </Link>
       </section>
       
